@@ -1,4 +1,11 @@
 
+// YOUR REAL LINKS CORRECTED - NOT BROTHER'S
+const PORTFOLIO_LINK = process.env.NEXORA_PORTFOLIO_LINK || 'https://react-artifact-alpha-brown.vercel.app';
+const WHATSAPP_LINK = process.env.NEXORA_WHATSAPP_LINK || 'https://wa.me/qr/IVANAHGG5ZL3D1';
+const EXCEL_FOLDER_LINK = process.env.NEXORA_EXCEL_FOLDER || 'https://drive.google.com/drive/folders/1-WS4HGKNrnxN1CBDLtxEoxtoQjNjydil';
+const DASHBOARD_BASE = process.env.NEXORA_DASHBOARD_BASE || 'https://nexora-os-dashboard-eta.vercel.app';
+const OUTREACH_SHEET = 'https://docs.google.com/spreadsheets/d/1qLXXg60gCfzbkGJu1rDV-xpYOc01O6FslappScqzN-8/edit';
+
 // NEXORA OS v6+v7 FINAL - PRO WRITE-UP Hook+Evidence+Dashboard + REAL INFOS (IG/TikTok/GMaps via APIFY_TOKEN) + BRAIN MEMORY
 const express = require('express');
 const cors = require('cors');
@@ -101,7 +108,7 @@ async function scrapeRealInfos({handle, type, query}){
 // PRO WRITE-UP - Hook, Evidence, Benefit, Dashboard LIVE
 async function proWriter({client_name, bad_count, lost_text, lost_num, niche, handle, sample_comments, dashboard_link, portfolio_link}){
   const commentsEvidence = sample_comments?.slice(0,2).map(c=>`${c.handle}: ${c.text} (${c.time})`).join(', ') || '"How much for 2 bed?" (1h ago), "Still available?" (3h ago)';
-  const portfolio = portfolio_link || 'https://nexora-os-dashboard-eta.vercel.app/?view=portfolio';
+  const portfolio = portfolio_link || 'https://react-artifact-alpha-brown.vercel.app';
   const dashboard = dashboard_link || `https://nexora-os-dashboard-eta.vercel.app/?client=${encodeURIComponent(client_name)}`;
   const excelSheet = 'https://docs.google.com/spreadsheets/d/1qLXXg60gCfzbkGJu1rDV-xpYOc01O6FslappScqzN-8/edit';
   
@@ -161,7 +168,7 @@ const Workflows = {
       const phone = `23480${Math.floor(Math.random()*1e8).toString().padStart(8,'0')}`;
       const sample = realComments || [{handle:'@prospect1',text:'How much for 2 bed?',time:'1h ago'},{handle:'@prospect2',text:'Still available? Need today',time:'3h ago'},{handle:'@prospect3',text:'DM price pls',time:'5h ago'}];
       const dashboard_link = `https://nexora-os-dashboard-eta.vercel.app/?client=${encodeURIComponent(client_name)}&bad=${bad}&lost=${encodeURIComponent(lost_text)}&phone=${phone}&handle=${handle}`;
-      const portfolio_link = `https://nexora-os-dashboard-eta.vercel.app/?view=portfolio`;
+      const portfolio_link = `https://react-artifact-alpha-brown.vercel.app`;
       const ai_message = await proWriter({client_name, bad_count:bad, lost_text, lost_num, niche, handle, sample_comments:sample, dashboard_link, portfolio_link});
       const wa_link = `https://wa.me/${phone}?text=${encodeURIComponent(ai_message)}`;
       const lead = { client_name, handle, phone, bad_count:bad, lost_text, lost_num, sample_comments:sample, ai_message, wa_link, dashboard_link, portfolio_link, status:'pending', business_niche:niche, created_at: new Date().toISOString() };
@@ -223,7 +230,7 @@ app.get('/run-pro-write', async(req,res)=>{
     const useReal = req.query.real!=='false';
     let sample = [{handle:'@prospect1',text:'How much for 2 bed?',time:'1h ago'},{handle:'@prospect2',text:'Still available?',time:'3h ago'}];
     if(useReal){ try{ sample = await scrapeRealInfos({handle, type:'instagram'}); }catch(e){} }
-    const msg=await proWriter({client_name:client, bad_count:bad, lost_text:lost, lost_num:3900000, niche, handle, sample_comments:sample, dashboard_link:`https://nexora-os-dashboard-eta.vercel.app/?client=${encodeURIComponent(client)}&bad=${bad}&lost=${encodeURIComponent(lost)}&handle=${handle}`, portfolio_link:'https://nexora-os-dashboard-eta.vercel.app/?view=portfolio'});
+    const msg=await proWriter({client_name:client, bad_count:bad, lost_text:lost, lost_num:3900000, niche, handle, sample_comments:sample, dashboard_link:`https://nexora-os-dashboard-eta.vercel.app/?client=${encodeURIComponent(client)}&bad=${bad}&lost=${encodeURIComponent(lost)}&handle=${handle}`, portfolio_link:'https://react-artifact-alpha-brown.vercel.app'});
     res.json({success:true, client, bad, lost, real_infos_used:!!sample[0]?.source, message: msg, wa_link:`https://wa.me/23480XXXXXXX?text=${encodeURIComponent(msg)}`, note:'PRO write-up: Hook in 5 words, REAL IG/TikTok/GMaps complaints, N10M->1M benefit, dashboard LIVE, portfolio, Excel'});
   }catch(e){ res.status(500).json({error:e.message}); }
 });
